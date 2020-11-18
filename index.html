@@ -18,9 +18,12 @@
       <b>Edit user</b>
 
       <form id="editHumanForm" onsubmit="saveEditHumanForm()">
+        <br><br>
         <input style="display: none;" id="editHumanFormId" type="text" name="id">
-        Name: <input id="editHumanFormNameInput" type="text" name="name"><br><br>
-        Age: <input id="editHumanFormAgeInput" type="text" name="age"><br><br>
+        <b>Name:</b>
+        <input id="editHumanFormNameInput" class="form-input" type="text" name="name"><br><br>
+        <b>Age: </b>
+        <input id="editHumanFormAgeInput" class="form-input" type="text" name="age"><br><br>
       </form>
 
       <button class="button warn-button" type="button" onclick="closeModal(event)">Close</button>
