@@ -2420,7 +2420,7 @@ window.onload = (() => {
 let tableHeaders = ["Name", "Age", "Eye color", "Gender", "Company", ''];
 
 
-const createHumansTable = () => {
+function createHumansTable() {
   // Remove all children from humans table div (if any)
   while (dataTableDiv.firstChild) dataTableDiv.removeChild(dataTableDiv.firstChild);
 
@@ -2461,7 +2461,7 @@ const createHumansTable = () => {
 }
 
 // The function below will accept a single score and its index to create the global ranking
-const appendHumans = (human) => {
+function appendHumans(human) {
 
   // Find the table we created
   const humansTable = document.querySelector('.humansTable');
@@ -2519,7 +2519,7 @@ const appendHumans = (human) => {
   humansTable.append(humansTableBodyRow);
 }
 
-const removeRow = (id) => {
+function removeRow(id) {
   console.log(id);
   const index = generatedData.findIndex(item => item.id === id);
   console.log('index found', index);
@@ -2529,13 +2529,15 @@ const removeRow = (id) => {
   getHumans();
 }
 
-const editRow = (id) => {
+function editRow(id) {
   console.log(id);
   const index = generatedData.findIndex(item => item.id === id);
   console.log('index found', index, generatedData[index]);
+
+  document.getElementById('editModal').classList.add('open');
 }
 
-const getHumans = () => {
+function getHumans() {
   // fetch('http://localhost:3000/scores') // Fetch for all scores. The response is an array of objects that is sorted in decreasing order
   //     .then(res => res.json())
   //     .then(scores => {
@@ -2553,3 +2555,15 @@ const getHumans = () => {
     appendHumans(human); // Creates and appends each row to the table body
   }
 }
+
+function closeModal(event) {
+  const target = event.target.parentElement.parentElement;
+  console.log(target)
+
+  if ((target.hasAttribute('data-dismiss') && target.getAttribute('data-dismiss') == 'modal') || target.classList.contains('modal')) {
+    var modal = document.querySelector('[class="modal open"]');
+    modal.classList.remove('open');
+    event.preventDefault();
+  }
+}
+
