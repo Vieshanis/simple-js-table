@@ -16,8 +16,16 @@
   <div id="editModal" class="modal">
     <div class="modal-window">
       <b>Edit user</b>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <button onclick="closeModal(event)">Close</button>
+
+      <form id="editHumanForm" onsubmit="saveEditHumanForm()">
+        <input style="display: none;" id="editHumanFormId" type="text" name="id">
+        Name: <input id="editHumanFormNameInput" type="text" name="name"><br><br>
+        Age: <input id="editHumanFormAgeInput" type="text" name="age"><br><br>
+      </form>
+
+      <button class="button warn-button" type="button" onclick="closeModal(event)">Close</button>
+      <button class="button ok-button" type="button" onclick="saveEditHumanForm(event)">Save</button>
+
     </div>
   </div>
 

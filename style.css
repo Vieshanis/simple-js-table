@@ -44,19 +44,19 @@ table th {
   transition: 0.25s ease;
 }
 
-.remove-button {
+.warn-button {
   background-color: #f50057;
   border: 2px solid #f50057;
 }
-.remove-button:hover {
+.warn-button:hover {
   color: #f50057 !important;
   background-color: transparent !important;
 }
-.edit-button {
+.ok-button {
   background-color: #81b214;
   border: 2px solid #81b214;
 }
-.edit-button:hover {
+.ok-button:hover {
   color: #81b214 !important;
   background-color: transparent !important;
 }

@@ -2498,13 +2498,13 @@ function appendHumans(human) {
 
   let removeButton = document.createElement('input');
   removeButton.setAttribute('type', 'button');
-  removeButton.setAttribute('class', 'button remove-button');
+  removeButton.setAttribute('class', 'button warn-button');
   removeButton.setAttribute('value', 'Remove');
   removeButton.setAttribute('onclick', `removeRow('${human.id}')`);
 
   let editButton = document.createElement('input');
   editButton.setAttribute('type', 'button');
-  editButton.setAttribute('class', 'button edit-button');
+  editButton.setAttribute('class', 'button ok-button');
   editButton.setAttribute('value', 'Edit');
   editButton.setAttribute('onclick', `editRow('${human.id}')`);
 
@@ -2532,9 +2532,40 @@ function removeRow(id) {
 function editRow(id) {
   console.log(id);
   const index = generatedData.findIndex(item => item.id === id);
-  console.log('index found', index, generatedData[index]);
 
-  document.getElementById('editModal').classList.add('open');
+  if (index > -1) {
+    console.log('index found', index, generatedData[index]);
+
+    document.getElementById('editHumanFormId').value = generatedData[index].id;
+    document.getElementById('editHumanFormNameInput').value = generatedData[index].name;
+    document.getElementById('editHumanFormAgeInput').value = generatedData[index].age;
+
+    document.getElementById('editModal').classList.add('open');
+  }
+}
+
+function saveEditHumanForm(event) {
+  console.log(event);
+
+  const formData = new FormData(document.getElementById('editHumanForm'));
+  const data = {};
+  for (const entry of formData.entries()) {
+    console.log(entry);
+    data[entry[0]] = entry[1];
+  }
+  console.log(data);
+  if (!!data.id) {
+    const index = generatedData.findIndex(item => item.id === data.id);
+    if (index > -1) {
+      generatedData[index] = {
+        ...generatedData[index],
+        ...data
+      };
+    }
+  }
+
+  closeModal(event);
+  getHumans();
 }
 
 function getHumans() {
@@ -2557,6 +2588,7 @@ function getHumans() {
 }
 
 function closeModal(event) {
+  console.log('close modal')
   const target = event.target.parentElement.parentElement;
   console.log(target)
 
