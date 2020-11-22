@@ -2640,6 +2640,8 @@ function editRow(id) {
     document.getElementById('editHumanFormAgeInput').value = generatedData[index].age;
 
     document.getElementById('editModal').classList.add('open');
+  } else {
+    window.location.href = window.location.href.split('/test/')[0];
   }
 }
 
