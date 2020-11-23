@@ -2739,8 +2739,7 @@
     dataTableDiv.append(humansTable);
   }
 
-  // The function below will accept a single score and its index to create the global ranking
-  function appendHumans(human) {
+  function appendHuman(human) {
 
     // Find the table we created
     const humansTable = document.querySelector('.humansTable');
@@ -2750,8 +2749,6 @@
     humansTableBodyRow.className = 'humansTableBodyRow';
 
 
-    // ["Name", "Age", "Eye color", "Gender", "Company"];
-    // Create the 5 column cells that will be appended to the current table row
     let name = document.createElement('td');
     name.innerText = human.name;
     name.setAttribute('data-label', 'Name');
@@ -2772,7 +2769,6 @@
     company.innerText = human.company;
     company.setAttribute('data-label', 'Company');
 
-    // Buttons
     let buttonsTd1 = document.createElement('td');
     let buttonsTd2 = document.createElement('td');
     let buttonsTd3 = document.createElement('td');
@@ -2798,7 +2794,6 @@
     buttonsTd1.appendChild(removeButton);
     buttonsTd2.appendChild(editButton);
     buttonsTd3.appendChild(shareButton);
-
 
     // Append all cells to the table row
     humansTableBodyRow.append(name, age, eyeColor, gender, company, buttonsTd1, buttonsTd2, buttonsTd3);
@@ -2859,14 +2854,14 @@
     //     .then(humans => {
     //         createHumansTable();
     //         for (const human of humans) {
-    //             appendHumans(human);
+    //             appendHuman(human);
     //         }
     //     })
 
     createHumansTable();
     // Iterates through all the objects in the scores array and appends each one to the table body
     for (const human of generatedData) {
-      appendHumans(human); // Creates and appends each row to the table body
+      appendHuman(human); // Creates and appends each row to the table body
     }
   }
 
