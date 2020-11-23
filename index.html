@@ -11,7 +11,7 @@
 
   <div id="dataTable"></div>
 
-  <div id="editModal" class="modal">
+  <div id="editModal" class="modal hideModal">
     <div class="modal-window">
       <span class="close" onclick="closeModal(event)">&times;</span>
       <b>Edit user</b>
@@ -153,11 +153,9 @@
     left: 0;
     bottom: 0;
     right: 0;
-    display: none;
     overflow: auto;
     background-color: #000000;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
   }
 
   .modal-window {
@@ -194,8 +192,50 @@
     cursor: pointer;
   }
 
+  .hideModal {
+    z-index: -1;
+    opacity: 0;
+    animation: hide .2s;
+
+    transform: scale(0);
+  }
+
+  @keyframes hide {
+    from {
+      z-index: 2;
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    to {
+      z-index: -1;
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
   .open {
-    display: block;
+    /* display: block; */
+    opacity: 1;
+    z-index: 2;
+    animation: show .2s;
+    transform: scale(1);
+  }
+
+  @keyframes show {
+    from {
+
+      transform: scale(0);
+      opacity: 0;
+      z-index: -1;
+    }
+
+    to {
+
+      transform: scale(1);
+      opacity: 1;
+      z-index: 2;
+    }
   }
 
   /* Inputs */
@@ -2817,7 +2857,7 @@
     const target = event.target.parentElement.parentElement;
 
     if (target.classList.contains('modal')) {
-      var modal = document.querySelector('[class="modal open"]');
+      var modal = document.querySelector('[class="modal hideModal open"]');
       modal.classList.remove('open');
       event.preventDefault();
     }
