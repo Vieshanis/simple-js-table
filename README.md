@@ -7,4 +7,4 @@
 3. run `node server.js`
 
 
-Wasnt able to create BE part to http calls wasnt added
+Wasn't able to create BE part to http calls wasn't added
