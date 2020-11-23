@@ -2697,57 +2697,37 @@
   let tableHeaders = ["Name", "Age", "Eye color", "Gender", "Company", '', '', ''];
 
   function createHumansTable() {
-    // Find the humans table div in html
     dataTableDiv = document.getElementById('dataTable');
 
-    // Remove all children from humans table div (if any)
     while (dataTableDiv.firstChild) dataTableDiv.removeChild(dataTableDiv.firstChild);
 
-    // Create the table itself
     let humansTable = document.createElement('table');
     humansTable.className = 'humansTable';
 
-    // Creates the table header group element
     let humansTableHead = document.createElement('thead');
-    humansTableHead.className = 'humansTableHead';
 
-    // Creates the row that will contain the headers
     let humansTableHeaderRow = document.createElement('tr');
-    humansTableHeaderRow.className = 'humansTableHeaderRow';
 
-    // Will iterate over all the strings in the tableHeader array and will append the header cells to the table header row
     tableHeaders.forEach(header => {
-      // Creates the current header cell during a specific iteration
-      let scoreHeader = document.createElement('th');
-      scoreHeader.innerText = header;
-      // Appends the current header cell to the header row
-      humansTableHeaderRow.append(scoreHeader);
+      let tableHeader = document.createElement('th');
+      tableHeader.innerText = header;
+      humansTableHeaderRow.append(tableHeader);
     });
 
-    // Appends the header row to the table header group element
     humansTableHead.append(humansTableHeaderRow);
     humansTable.append(humansTableHead);
 
-    // Creates the table body group element
     let humansTableBody = document.createElement('tbody');
-    humansTableBody.className = "humansTable-Body";
 
-    // Appends the table body group element to the table
     humansTable.append(humansTableBody);
 
-    // Appends the table to the humans table div
     dataTableDiv.append(humansTable);
   }
 
   function appendHuman(human) {
-
-    // Find the table we created
     const humansTable = document.querySelector('.humansTable');
 
-    // Create the current table row
     let humansTableBodyRow = document.createElement('tr');
-    humansTableBodyRow.className = 'humansTableBodyRow';
-
 
     let name = document.createElement('td');
     name.innerText = human.name;
@@ -2795,10 +2775,8 @@
     buttonsTd2.appendChild(editButton);
     buttonsTd3.appendChild(shareButton);
 
-    // Append all cells to the table row
     humansTableBodyRow.append(name, age, eyeColor, gender, company, buttonsTd1, buttonsTd2, buttonsTd3);
 
-    // Append the current row to the humans table table body
     humansTable.append(humansTableBodyRow);
   }
 
