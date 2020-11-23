@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+  <div id="initialOverlay" class="initial-overlay"></div>
   <div id="shareHumanModal" class="modal">
     <div class="modal-window">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -71,6 +71,16 @@
     background-color: transparent !important;
   }
 
+  .initial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-color: #ffffff;
+    z-index: 9999;
+  }
 
   /* Modal */
   .modal {
@@ -79,11 +89,9 @@
     left: 0;
     bottom: 0;
     right: 0;
-    display: none;
     overflow: auto;
     background-color: #000000;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
   }
 
   .modal-window {
@@ -121,7 +129,26 @@
   }
 
   .open {
-    display: block;
+    opacity: 1;
+    z-index: 2;
+    animation: show .2s;
+    transform: scale(1);
+  }
+
+  @keyframes show {
+    from {
+
+      transform: scale(0);
+      opacity: 0;
+      z-index: -1;
+    }
+
+    to {
+
+      transform: scale(1);
+      opacity: 1;
+      z-index: 2;
+    }
   }
 </style>
 
@@ -2530,7 +2557,12 @@
   ];
 
   window.onload = (() => {
-    openHuman(window.location.href.split('/test/')[1]);
+    // Need to have this to hide modal flashing on page open
+    setTimeout(() => {
+      const stuff = document.getElementById('initialOverlay');
+      stuff.classList.remove('initial-overlay');
+      openHuman(window.location.href.split('/test/')[1]);
+    }, 1);
   });
 
   document.onkeydown = ((event) => {

@@ -226,7 +226,6 @@
   }
 
   .open {
-    /* display: block; */
     opacity: 1;
     z-index: 2;
     animation: show .2s;
@@ -2675,7 +2674,7 @@
 
   window.onload = (() => {
     getHumans();
-    // Need to have this to hide modal flashin on page open
+    // Need to have this to hide modal flashing on page open
     setTimeout(() => {
       const stuff = document.getElementById('initialOverlay');
       stuff.classList.remove('initial-overlay');
