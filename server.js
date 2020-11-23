@@ -9,7 +9,7 @@ const requestListener = function (req, res) {
   if (req.url.includes('/test')) {
     res.setHeader("Content-Type", "text/html");
     res.writeHead(200);
-    res.end(otherIndexFile);
+    res.end(shareIndexFile);
   } else {
     res.setHeader("Content-Type", "text/html");
     res.writeHead(200);
@@ -26,9 +26,9 @@ fs.readFile(__dirname + "/index.html")
     process.exit(1);
   });
 
-fs.readFile(__dirname + "/test.html")
+fs.readFile(__dirname + "/share.html")
   .then(contents => {
-    otherIndexFile = contents;
+    shareIndexFile = contents;
   })
   .catch(err => {
     console.error(`Could not read test.html file: ${err}`);
