@@ -102,7 +102,7 @@
     background-color: transparent !important;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 850px) {
     table {
       border: 0;
     }
@@ -203,13 +203,12 @@
     display: block;
     width: 100%;
     font-size: 14pt;
-    line-height: 28pt;
-    margin-bottom: 28pt;
+    line-height: 28px;
+    margin-bottom: 10px;
     border: none;
-    border-bottom: 5px solid rgba(0, 0, 0, 1);
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
     background: #f8f4e5;
-    min-width: 250px;
-    padding-left: 5px;
+    min-width: 150px;
     outline: none;
     color: rgba(0, 0, 0, 1);
   }
@@ -2623,11 +2622,7 @@
     }
   ];
 
-  let dataTableDiv = null;
-
   window.onload = (() => {
-    // Find the humans table div in html
-    dataTableDiv = document.getElementById('dataTable');
     getHumans();
   });
 
@@ -2642,9 +2637,12 @@
     }
   });
 
-  let tableHeaders = ["Name", "Age", "Eye color", "Gender", "Company", ''];
+  let tableHeaders = ["Name", "Age", "Eye color", "Gender", "Company", '', '', ''];
 
   function createHumansTable() {
+    // Find the humans table div in html
+    dataTableDiv = document.getElementById('dataTable');
+
     // Remove all children from humans table div (if any)
     while (dataTableDiv.firstChild) dataTableDiv.removeChild(dataTableDiv.firstChild);
 
@@ -2718,7 +2716,9 @@
     company.setAttribute('data-label', 'Company');
 
     // Buttons
-    let buttonsTd = document.createElement('td');
+    let buttonsTd1 = document.createElement('td');
+    let buttonsTd2 = document.createElement('td');
+    let buttonsTd3 = document.createElement('td');
 
     let removeButton = document.createElement('input');
     removeButton.setAttribute('type', 'button');
@@ -2738,13 +2738,13 @@
     shareButton.setAttribute('value', 'Share');
     shareButton.setAttribute('onclick', `shareRow('${human.id}')`);
 
-    buttonsTd.appendChild(removeButton);
-    buttonsTd.appendChild(editButton);
-    buttonsTd.appendChild(shareButton);
+    buttonsTd1.appendChild(removeButton);
+    buttonsTd2.appendChild(editButton);
+    buttonsTd3.appendChild(shareButton);
 
 
     // Append all cells to the table row
-    humansTableBodyRow.append(name, age, eyeColor, gender, company, buttonsTd);
+    humansTableBodyRow.append(name, age, eyeColor, gender, company, buttonsTd1, buttonsTd2, buttonsTd3);
 
     // Append the current row to the humans table table body
     humansTable.append(humansTableBodyRow);
