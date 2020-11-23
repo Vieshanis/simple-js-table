@@ -18,7 +18,7 @@
 
       <form id="editHumanForm">
         <br><br>
-        <input style="display: none;" id="editHumanFormId" type="text" name="id">
+        <input class="display-none" id="editHumanFormId" type="text" name="id">
         <b>Name:</b>
         <input id="editHumanFormNameInput" class="form-input" type="text" name="name"><br><br>
         <b>Age: </b>
@@ -70,6 +70,10 @@
   table th {
     font-size: 0.85em;
     letter-spacing: 0.1em;
+  }
+
+  .display-none {
+    display: none;
   }
 
   .button {
@@ -157,7 +161,6 @@
     z-index: 9999;
   }
 
-  /* Modal */
   .modal {
     position: fixed;
     top: 0;
@@ -248,7 +251,6 @@
     }
   }
 
-  /* Inputs */
   .form-input {
     display: block;
     width: 100%;
