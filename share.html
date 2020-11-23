@@ -9,7 +9,7 @@
 
 <body>
   <div id="initialOverlay" class="initial-overlay"></div>
-  <div id="shareHumanModal" class="modal">
+  <div id="shareHumanModal" class="modal" onclick="clickOnModal(event)">
     <div class="modal-window">
       <span class="close" onclick="closeModal()">&times;</span>
       <b>Human details</b>
@@ -2559,9 +2559,9 @@
   window.onload = (() => {
     // Need to have this to hide modal flashing on page open
     setTimeout(() => {
-      const stuff = document.getElementById('initialOverlay');
-      stuff.classList.remove('initial-overlay');
-      openHuman(window.location.href.split('/test/')[1]);
+      const overlay = document.getElementById('initialOverlay');
+      overlay.classList.remove('initial-overlay');
+      openModal(window.location.href.split('/test/')[1]);
     }, 1);
   });
 
@@ -2574,7 +2574,7 @@
   });
 
 
-  function openHuman(id) {
+  function openModal(id) {
     const index = generatedData.findIndex(item => item.id === id);
 
     if (index > -1) {
@@ -2589,6 +2589,13 @@
 
   function closeModal() {
     window.location.href = window.location.href.split('/test/')[0];
+  }
+
+  function clickOnModal(event) {
+    if (event.target.classList.contains('modal')) {
+      window.location.href = window.location.href.split('/test/')[0];
+      event.preventDefault();
+    }
   }
 
 

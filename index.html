@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Table</title>
 </head>
 
 <body>
   <div id="initialOverlay" class="initial-overlay"></div>
   <div id="dataTable"></div>
 
-  <div id="editModal" class="modal hideModal">
+  <div id="editModal" class="modal hideModal" onclick="clickOnModal(event)">
     <div class="modal-window">
       <span class="close" onclick="closeModal(event)">&times;</span>
       <b>Edit user</b>
@@ -2676,8 +2676,8 @@
     getHumans();
     // Need to have this to hide modal flashing on page open
     setTimeout(() => {
-      const stuff = document.getElementById('initialOverlay');
-      stuff.classList.remove('initial-overlay');
+      const overlay = document.getElementById('initialOverlay');
+      overlay.classList.remove('initial-overlay');
     }, 1);
   });
 
@@ -2872,6 +2872,14 @@
     const target = event.target.parentElement.parentElement;
 
     if (target.classList.contains('modal')) {
+      var modal = document.querySelector('[class="modal hideModal open"]');
+      modal.classList.remove('open');
+      event.preventDefault();
+    }
+  }
+
+  function clickOnModal(event) {
+    if (event.target.classList.contains('hideModal')) {
       var modal = document.querySelector('[class="modal hideModal open"]');
       modal.classList.remove('open');
       event.preventDefault();
