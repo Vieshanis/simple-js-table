@@ -2530,14 +2530,13 @@
   ];
 
   window.onload = (() => {
-    console.log(window.location.href.split('/test/'))
-    openHuman(window.location.href.split('/test/')[1])
+    openHuman(window.location.href.split('/test/')[1]);
   });
 
   document.onkeydown = ((event) => {
     event = event || window.event;
-    event.preventDefault();
     if (event.keyCode == 27) {
+      event.preventDefault();
       closeModal();
     }
   });
@@ -2547,8 +2546,6 @@
     const index = generatedData.findIndex(item => item.id === id);
 
     if (index > -1) {
-      console.log('index found', index, generatedData[index]);
-
       document.getElementById('humanName').innerText = generatedData[index].name;
       document.getElementById('humanAge').innerText = generatedData[index].age;
 
