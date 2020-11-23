@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+  <div id="initialOverlay" class="initial-overlay"></div>
   <div id="dataTable"></div>
 
   <div id="editModal" class="modal hideModal">
@@ -144,6 +144,17 @@
     table td:last-child {
       border-bottom: 0;
     }
+  }
+
+  .initial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-color: #ffffff;
+    z-index: 9999;
   }
 
   /* Modal */
@@ -2664,6 +2675,11 @@
 
   window.onload = (() => {
     getHumans();
+    // Need to have this to hide modal flashin on page open
+    setTimeout(() => {
+      const stuff = document.getElementById('initialOverlay');
+      stuff.classList.remove('initial-overlay');
+    }, 1);
   });
 
   document.onkeydown = ((event) => {
