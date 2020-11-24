@@ -2826,15 +2826,24 @@
     getHumans();
   }
 
+  function httpGetAsync(theUrl, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true);
+    xmlHttp.send(null);
+  }
+
   function getHumans() {
-    // fetch('http://localhost:3000/humans')
-    //     .then(res => res.json())
-    //     .then(humans => {
-    //         createHumansTable();
-    //         for (const human of humans) {
-    //             appendHuman(human);
-    //         }
-    //     })
+    // This is how I would get data if I had api
+    // httpGetAsync('localhost:3000/humans', (res) => {
+    //   createHumansTable();
+    //   for (const human of res) {
+    //     appendHuman(human); // Creates and appends each row to the table body
+    //   }
+    // })
 
     createHumansTable();
     for (const human of generatedData) {
