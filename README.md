@@ -7,4 +7,4 @@
 3. run `node server.js`
 
 
-Wasn't able to create BE part to http calls wasn't added
+Wasn't able to create BE part so all data is stored/modified localy
